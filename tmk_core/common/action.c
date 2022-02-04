@@ -263,6 +263,9 @@ void process_action(keyrecord_t *record, action_t action) {
 #    ifdef SWAP_HANDS_ENABLE
         && !(action.kind.id == ACT_SWAP_HANDS && action.swap.code == OP_SH_ONESHOT)
 #    endif
+/*#    ifndef NO_ACTION_ONESHOT
+        && !((action.kind.id == ACT_LMODS_TAP || action.kind.id == ACT_RMODS_TAP) && action.layer_tap.code == MODS_ONESHOT)
+#    endif*/
     ) {
         clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
         do_release_oneshot = !is_oneshot_layer_active();
