@@ -246,7 +246,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
-extern bool g_suspend_state;
 extern rgb_config_t rgb_matrix_config;
 
 void keyboard_post_init_user(void) {
@@ -264,42 +263,75 @@ void keyboard_post_init_user(void) {
 4 9 14 19 24    35         71    60 55 50 45 40
              32 33 34   70 69 68
  */
-#define PINKMAN_HSV {210,241,249}
-#define CYAN_HSV {131,241,249}
-#define YELLOW_HSV {42,241,249}
-#define DANGER_HSV {0,241,249}
-#define MAGIC_INK_HSV {161,241,249}
-#define EMERALD_HSV {89,241,249}
-#define WHITE_HSV {0,0,255}
+// Color definations from Oryx
+#define HSV_PINKMAN 210,241,249
+#define HSV_DANGER 0,241,249
+#define HSV_MAGIC_INK 161,241,249
+#define HSV_GALACTIC_EMERALD 89,241,249
+#define HSV_ELECTRIC_CYAN 131,241,249
+#define HSV_LAHN_YELLOW 42,241,249
+
+
+// Reuse simple color names already defined in color.h
+#undef HSV_RED
+#undef HSV_BLUE
+#undef HSV_GREEN
+#undef HSV_CYAN
+
+#define HSV_MGNTA HSV_PINKMAN
+#define HSV_YLLOW HSV_LAHN_YELLOW
+#define HSV_RED HSV_DANGER
+#define HSV_BLUE HSV_MAGIC_INK
+#define HSV_GREEN HSV_GALACTIC_EMERALD
+#define HSV_CYAN HSV_ELECTRIC_CYAN
+#define HSV______ HSV_BLACK
+
+#define LEDLAYOUT(\
+a00,a05,a10,a15,a20,a25,a29,         a65,a61,a56,a51,a46,a41,a36,\
+a01,a06,a11,a16,a21,a26,a30,         a66,a62,a57,a52,a47,a42,a37,\
+a02,a07,a12,a17,a22,a27,a31,         a67,a63,a58,a53,a48,a43,a38,\
+a03,a08,a13,a18,a23,a28,                 a64,a59,a54,a49,a44,a39,\
+a04,a09,a14,a19,a24,    a35,         a71,    a60,a55,a50,a45,a40,\
+                    a32,a33,a34, a70,a69,a68)\
+{\
+{a00},{a01},{a02},{a03},{a04},{a05},{a06},{a07},{a08},{a09},\
+{a10},{a11},{a12},{a13},{a14},{a15},{a16},{a17},{a18},{a19},\
+{a20},{a21},{a22},{a23},{a24},{a25},{a26},{a27},{a28},{a29},\
+{a30},{a31},{a32},{a33},{a34},{a35},{a36},{a37},{a38},{a39},\
+{a40},{a41},{a42},{a43},{a44},{a45},{a46},{a47},{a48},{a49},\
+{a50},{a51},{a52},{a53},{a54},{a55},{a56},{a57},{a58},{a59},\
+{a60},{a61},{a62},{a63},{a64},{a65},{a66},{a67},{a68},{a69},\
+{a70},{a71},}
 
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
+    /*
     [MIRMAIN] = { 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, PINKMAN_HSV, 
+      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, HSV_PINKMAN, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
-      CYAN_HSV, YELLOW_HSV, {0,0,0}, 
+      HSV_CYAN, HSV_YELLOW, {0,0,0}, 
       {0,0,0}, 
       
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, DANGER_HSV, 
+      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, HSV_DANGER, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
-      MAGIC_INK_HSV, EMERALD_HSV, {0,0,0}, 
+      HSV_MAGIC_INK, HSV_EMERALD, {0,0,0}, 
       {0,0,0} },
-
+      
     [JMP] = { 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, WHITE_HSV, 
+      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, HSV_WHITE, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
@@ -309,7 +341,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, WHITE_HSV, 
+      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, HSV_WHITE, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
@@ -317,10 +349,10 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
 
     [JMPLEFT] = { 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, WHITE_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, WHITE_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, WHITE_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, WHITE_HSV, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
@@ -330,10 +362,10 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, DANGER_HSV, 
+      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, HSV_DANGER, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
-      MAGIC_INK_HSV, EMERALD_HSV, {0,0,0}, 
+      HSV_MAGIC_INK, HSV_EMERALD, {0,0,0}, 
       {0,0,0} },
 
     [JMPRIGHT] = { 
@@ -341,17 +373,17 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, PINKMAN_HSV, 
+      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, HSV_PINKMAN, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
-      CYAN_HSV, YELLOW_HSV, {0,0,0}, 
+      HSV_CYAN, HSV_YELLOW, {0,0,0}, 
       {0,0,0}, 
       
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, WHITE_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, WHITE_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, WHITE_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, WHITE_HSV, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
@@ -359,62 +391,62 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
 
     [MIRNAV] = { 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, CYAN_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, CYAN_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, CYAN_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, CYAN_HSV, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_CYAN, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_CYAN, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_CYAN, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_CYAN, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
-      CYAN_HSV, {0,0,0}, {0,0,0}, 
+      HSV_CYAN, {0,0,0}, {0,0,0}, 
       {0,0,0}, 
       
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, CYAN_HSV, CYAN_HSV, CYAN_HSV, {0,0,0}, 
-      {0,0,0}, CYAN_HSV, CYAN_HSV, CYAN_HSV, {0,0,0}, 
-      {0,0,0}, CYAN_HSV, CYAN_HSV, CYAN_HSV, {0,0,0}, 
-      {0,0,0}, CYAN_HSV, CYAN_HSV, CYAN_HSV, CYAN_HSV, 
-      {0,0,0}, CYAN_HSV, CYAN_HSV, CYAN_HSV, 
+      {0,0,0}, HSV_CYAN, HSV_CYAN, HSV_CYAN, {0,0,0}, 
+      {0,0,0}, HSV_CYAN, HSV_CYAN, HSV_CYAN, {0,0,0}, 
+      {0,0,0}, HSV_CYAN, HSV_CYAN, HSV_CYAN, {0,0,0}, 
+      {0,0,0}, HSV_CYAN, HSV_CYAN, HSV_CYAN, HSV_CYAN, 
+      {0,0,0}, HSV_CYAN, HSV_CYAN, HSV_CYAN, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
-      CYAN_HSV, CYAN_HSV, {0,0,0}, 
+      HSV_CYAN, HSV_CYAN, {0,0,0}, 
       {0,0,0} },
 
     [MIRNUM] = { 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, MAGIC_INK_HSV, MAGIC_INK_HSV, MAGIC_INK_HSV, {0,0,0}, 
-      {0,0,0}, MAGIC_INK_HSV, MAGIC_INK_HSV, MAGIC_INK_HSV, {0,0,0}, 
-      {0,0,0}, MAGIC_INK_HSV, MAGIC_INK_HSV, MAGIC_INK_HSV, {0,0,0}, 
-      {0,0,0}, MAGIC_INK_HSV, MAGIC_INK_HSV, MAGIC_INK_HSV, MAGIC_INK_HSV, 
-      {0,0,0}, MAGIC_INK_HSV, MAGIC_INK_HSV, MAGIC_INK_HSV, 
+      {0,0,0}, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, {0,0,0}, 
+      {0,0,0}, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, {0,0,0}, 
+      {0,0,0}, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, {0,0,0}, 
+      {0,0,0}, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, 
+      {0,0,0}, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
-      MAGIC_INK_HSV, MAGIC_INK_HSV, {0,0,0}, 
+      HSV_MAGIC_INK, HSV_MAGIC_INK, {0,0,0}, 
       {0,0,0}, 
       
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, MAGIC_INK_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, MAGIC_INK_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, MAGIC_INK_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, MAGIC_INK_HSV, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_MAGIC_INK, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_MAGIC_INK, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_MAGIC_INK, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_MAGIC_INK, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
-      MAGIC_INK_HSV, {0,0,0}, {0,0,0}, 
+      HSV_MAGIC_INK, {0,0,0}, {0,0,0}, 
       {0,0,0} },
 
     [MIRFN] = { 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, DANGER_HSV, DANGER_HSV, DANGER_HSV, {0,0,0}, 
-      {0,0,0}, DANGER_HSV, DANGER_HSV, DANGER_HSV, {0,0,0}, 
-      {0,0,0}, DANGER_HSV, DANGER_HSV, DANGER_HSV, {0,0,0}, 
-      {0,0,0}, DANGER_HSV, DANGER_HSV, DANGER_HSV, DANGER_HSV, 
-      {0,0,0}, DANGER_HSV, DANGER_HSV, DANGER_HSV, 
+      {0,0,0}, HSV_DANGER, HSV_DANGER, HSV_DANGER, {0,0,0}, 
+      {0,0,0}, HSV_DANGER, HSV_DANGER, HSV_DANGER, {0,0,0}, 
+      {0,0,0}, HSV_DANGER, HSV_DANGER, HSV_DANGER, {0,0,0}, 
+      {0,0,0}, HSV_DANGER, HSV_DANGER, HSV_DANGER, HSV_DANGER, 
+      {0,0,0}, HSV_DANGER, HSV_DANGER, HSV_DANGER, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
-      DANGER_HSV, DANGER_HSV, {0,0,0}, 
+      HSV_DANGER, HSV_DANGER, {0,0,0}, 
       {0,0,0}, 
       
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, DANGER_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, DANGER_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, DANGER_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, DANGER_HSV, {0,0,0}, DANGER_HSV, 
+      {0,0,0}, {0,0,0}, HSV_DANGER, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_DANGER, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_DANGER, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_DANGER, {0,0,0}, HSV_DANGER, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
@@ -422,104 +454,104 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
 
     [MIRSYM] = { 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, EMERALD_HSV, EMERALD_HSV, EMERALD_HSV, {0,0,0}, 
-      {0,0,0}, EMERALD_HSV, EMERALD_HSV, EMERALD_HSV, {0,0,0}, 
-      {0,0,0}, EMERALD_HSV, EMERALD_HSV, EMERALD_HSV, {0,0,0}, 
-      {0,0,0}, EMERALD_HSV, EMERALD_HSV, EMERALD_HSV, EMERALD_HSV, 
-      {0,0,0}, EMERALD_HSV, EMERALD_HSV, EMERALD_HSV, 
+      {0,0,0}, HSV_EMERALD, HSV_EMERALD, HSV_EMERALD, {0,0,0}, 
+      {0,0,0}, HSV_EMERALD, HSV_EMERALD, HSV_EMERALD, {0,0,0}, 
+      {0,0,0}, HSV_EMERALD, HSV_EMERALD, HSV_EMERALD, {0,0,0}, 
+      {0,0,0}, HSV_EMERALD, HSV_EMERALD, HSV_EMERALD, HSV_EMERALD, 
+      {0,0,0}, HSV_EMERALD, HSV_EMERALD, HSV_EMERALD, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
-      EMERALD_HSV, EMERALD_HSV, {0,0,0}, 
+      HSV_EMERALD, HSV_EMERALD, {0,0,0}, 
       {0,0,0}, 
       
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, EMERALD_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, EMERALD_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, EMERALD_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, EMERALD_HSV, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_EMERALD, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_EMERALD, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_EMERALD, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_EMERALD, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, EMERALD_HSV, {0,0,0}, 
+      {0,0,0}, HSV_EMERALD, {0,0,0}, 
       {0,0,0} },
 
     [MIRMEDIA] = { 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, PINKMAN_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, PINKMAN_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, PINKMAN_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, PINKMAN_HSV, {0,0,0}, PINKMAN_HSV, 
+      {0,0,0}, {0,0,0}, HSV_PINKMAN, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_PINKMAN, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_PINKMAN, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_PINKMAN, {0,0,0}, HSV_PINKMAN, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, 
       
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, PINKMAN_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, PINKMAN_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, PINKMAN_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, PINKMAN_HSV, {0,0,0}, PINKMAN_HSV, 
+      {0,0,0}, {0,0,0}, HSV_PINKMAN, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_PINKMAN, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_PINKMAN, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_PINKMAN, {0,0,0}, HSV_PINKMAN, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
-      PINKMAN_HSV, PINKMAN_HSV, {0,0,0}, 
+      HSV_PINKMAN, HSV_PINKMAN, {0,0,0}, 
       {0,0,0} },
 
     [MIRMOUSE] = { 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, YELLOW_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, YELLOW_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, YELLOW_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, YELLOW_HSV, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_YELLOW, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_YELLOW, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_YELLOW, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_YELLOW, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, 
       
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, YELLOW_HSV, YELLOW_HSV, YELLOW_HSV, {0,0,0}, 
-      {0,0,0}, YELLOW_HSV, YELLOW_HSV, YELLOW_HSV, {0,0,0}, 
-      {0,0,0}, YELLOW_HSV, YELLOW_HSV, YELLOW_HSV, {0,0,0}, 
-      {0,0,0}, YELLOW_HSV, YELLOW_HSV, YELLOW_HSV, YELLOW_HSV, 
-      {0,0,0}, {0,0,0}, {0,0,0}, YELLOW_HSV, 
+      {0,0,0}, HSV_YELLOW, HSV_YELLOW, HSV_YELLOW, {0,0,0}, 
+      {0,0,0}, HSV_YELLOW, HSV_YELLOW, HSV_YELLOW, {0,0,0}, 
+      {0,0,0}, HSV_YELLOW, HSV_YELLOW, HSV_YELLOW, {0,0,0}, 
+      {0,0,0}, HSV_YELLOW, HSV_YELLOW, HSV_YELLOW, HSV_YELLOW, 
+      {0,0,0}, {0,0,0}, {0,0,0}, HSV_YELLOW, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
-      YELLOW_HSV, YELLOW_HSV, {0,0,0}, 
+      HSV_YELLOW, HSV_YELLOW, {0,0,0}, 
       {0,0,0} },
 
     [OSMNAV] = { 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, WHITE_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, WHITE_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, WHITE_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, WHITE_HSV, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, 
       
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, CYAN_HSV, CYAN_HSV, CYAN_HSV, {0,0,0}, 
-      {0,0,0}, CYAN_HSV, CYAN_HSV, CYAN_HSV, {0,0,0},
-      {0,0,0}, CYAN_HSV, CYAN_HSV, CYAN_HSV, {0,0,0}, 
-      {0,0,0}, CYAN_HSV, CYAN_HSV, CYAN_HSV, WHITE_HSV, 
-      {0,0,0}, CYAN_HSV, CYAN_HSV, CYAN_HSV, 
+      {0,0,0}, HSV_CYAN, HSV_CYAN, HSV_CYAN, {0,0,0}, 
+      {0,0,0}, HSV_CYAN, HSV_CYAN, HSV_CYAN, {0,0,0},
+      {0,0,0}, HSV_CYAN, HSV_CYAN, HSV_CYAN, {0,0,0}, 
+      {0,0,0}, HSV_CYAN, HSV_CYAN, HSV_CYAN, HSV_WHITE, 
+      {0,0,0}, HSV_CYAN, HSV_CYAN, HSV_CYAN, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
-      WHITE_HSV },
+      HSV_WHITE },
 
     [OSMNUM] = { 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, MAGIC_INK_HSV, MAGIC_INK_HSV, MAGIC_INK_HSV, {0,0,0}, 
-      {0,0,0}, MAGIC_INK_HSV, MAGIC_INK_HSV, MAGIC_INK_HSV, {0,0,0}, 
-      {0,0,0}, MAGIC_INK_HSV, MAGIC_INK_HSV, MAGIC_INK_HSV, {0,0,0}, 
-      {0,0,0}, MAGIC_INK_HSV, MAGIC_INK_HSV, MAGIC_INK_HSV, WHITE_HSV, 
-      {0,0,0}, MAGIC_INK_HSV, MAGIC_INK_HSV, MAGIC_INK_HSV, 
+      {0,0,0}, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, {0,0,0}, 
+      {0,0,0}, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, {0,0,0}, 
+      {0,0,0}, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, {0,0,0}, 
+      {0,0,0}, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_WHITE, 
+      {0,0,0}, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
-      MAGIC_INK_HSV, MAGIC_INK_HSV, {0,0,0}, 
-      WHITE_HSV, 
+      HSV_MAGIC_INK, HSV_MAGIC_INK, {0,0,0}, 
+      HSV_WHITE, 
       
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, WHITE_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, WHITE_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, WHITE_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, WHITE_HSV, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
@@ -527,24 +559,141 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
 
     [OSMFN] = { 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, DANGER_HSV, DANGER_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, DANGER_HSV, DANGER_HSV, DANGER_HSV, {0,0,0}, 
-      {0,0,0}, DANGER_HSV, DANGER_HSV, DANGER_HSV, {0,0,0}, 
-      {0,0,0}, DANGER_HSV, DANGER_HSV, DANGER_HSV, {0,0,0}, 
-      {0,0,0}, DANGER_HSV, DANGER_HSV, DANGER_HSV, 
+      {0,0,0}, HSV_DANGER, HSV_DANGER, {0,0,0}, {0,0,0}, 
+      {0,0,0}, HSV_DANGER, HSV_DANGER, HSV_DANGER, {0,0,0}, 
+      {0,0,0}, HSV_DANGER, HSV_DANGER, HSV_DANGER, {0,0,0}, 
+      {0,0,0}, HSV_DANGER, HSV_DANGER, HSV_DANGER, {0,0,0}, 
+      {0,0,0}, HSV_DANGER, HSV_DANGER, HSV_DANGER, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, 
       
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, WHITE_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, WHITE_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, WHITE_HSV, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, WHITE_HSV, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
+      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0}, {0,0,0}, {0,0,0}, 
       {0,0,0} },
+      */
+    [MIRMAIN] = LEDLAYOUT(
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV_WHITE,HSV_WHITE,HSV_WHITE,HSV_WHITE,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV_WHITE,HSV_WHITE,HSV_WHITE,HSV_WHITE,
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                                           HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV_MGNTA,          HSV______,                       HSV______,          HSV_RED,HSV______,HSV______,HSV______,HSV______,
+                                                        HSV_CYAN, HSV_YLLOW,HSV______,   HSV______,HSV_GREEN,HSV_BLUE
+    ),
+
+    [JMP] = LEDLAYOUT(
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                                           HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV_WHITE,          HSV______,                       HSV______,          HSV_WHITE,HSV______,HSV______,HSV______,HSV______,
+                                                        HSV______,HSV______,HSV______,   HSV______,HSV______,HSV______
+    ),
+
+    [JMPLEFT] = LEDLAYOUT(
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV_WHITE,HSV_WHITE,HSV_WHITE,HSV_WHITE,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                                           HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,          HSV______,                       HSV______,          HSV_RED  ,HSV______,HSV______,HSV______,HSV______,
+                                                        HSV______,HSV______,HSV______,   HSV______,HSV_GREEN,HSV_BLUE
+    ),
+
+    [JMPRIGHT] = LEDLAYOUT(
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV_WHITE,HSV_WHITE,HSV_WHITE,HSV_WHITE,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                                           HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV_MGNTA,          HSV______,                       HSV______,          HSV_RED  ,HSV______,HSV______,HSV______,HSV______,
+                                                        HSV_CYAN, HSV_YLLOW,HSV______,   HSV______,HSV_GREEN,HSV_BLUE
+    ),
+
+   [MIRNAV] = LEDLAYOUT(
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV_CYAN ,HSV_CYAN ,HSV_CYAN ,HSV_CYAN ,HSV_CYAN ,HSV______,
+      HSV______,HSV_CYAN ,HSV_CYAN ,HSV_CYAN ,HSV_CYAN ,HSV______,HSV______,                       HSV______,HSV_CYAN ,HSV_CYAN ,HSV_CYAN ,HSV_CYAN ,HSV_CYAN ,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                                           HSV_CYAN ,HSV_CYAN ,HSV_CYAN ,HSV_CYAN ,HSV_CYAN ,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,          HSV______,                       HSV______,          HSV_CYAN ,HSV______,HSV______,HSV______,HSV______,
+                                                        HSV_CYAN, HSV______,HSV______,   HSV______,HSV_CYAN,HSV_CYAN
+    ),
+
+   [MIRNUM] = LEDLAYOUT(
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV_BLUE ,HSV_BLUE ,HSV_BLUE ,HSV_BLUE ,HSV_BLUE ,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV_BLUE ,HSV_BLUE ,HSV_BLUE ,HSV_BLUE ,HSV_BLUE ,HSV______,                       HSV______,HSV______,HSV_BLUE ,HSV_BLUE ,HSV_BLUE ,HSV_BLUE ,HSV______,
+      HSV______,HSV_BLUE ,HSV_BLUE ,HSV_BLUE ,HSV_BLUE ,HSV_BLUE ,                                           HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV_BLUE ,          HSV______,                       HSV______,          HSV______,HSV______,HSV______,HSV______,HSV______,
+                                                        HSV_BLUE ,HSV_BLUE ,HSV______,   HSV______,HSV______,HSV_BLUE
+    ),
+
+   [MIRFN] = LEDLAYOUT(
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV_RED  ,HSV_RED  ,HSV_RED  ,HSV_RED  ,HSV_RED  ,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV_RED  ,HSV_RED  ,HSV_RED  ,HSV_RED  ,HSV_RED  ,HSV______,                       HSV______,HSV______,HSV_RED  ,HSV_RED  ,HSV_RED  ,HSV_RED  ,HSV______,
+      HSV______,HSV_RED  ,HSV_RED  ,HSV_RED  ,HSV_RED  ,HSV_RED  ,                                           HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV_RED  ,          HSV______,                       HSV______,          HSV_RED  ,HSV______,HSV______,HSV______,HSV______,
+                                                        HSV_RED  ,HSV_RED  ,HSV______,   HSV______,HSV______,HSV______
+    ),
+   
+   [MIRSYM] = LEDLAYOUT(
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV_GREEN,HSV_GREEN,HSV_GREEN,HSV_GREEN,HSV_GREEN,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV_GREEN,HSV_GREEN,HSV_GREEN,HSV_GREEN,HSV_GREEN,HSV______,                       HSV______,HSV______,HSV_GREEN,HSV_GREEN,HSV_GREEN,HSV_GREEN,HSV______,
+      HSV______,HSV_GREEN,HSV_GREEN,HSV_GREEN,HSV_GREEN,HSV_GREEN,                                           HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV_GREEN,          HSV______,                       HSV______,          HSV______,HSV______,HSV______,HSV______,HSV______,
+                                                        HSV_GREEN,HSV_GREEN,HSV______,   HSV______,HSV_GREEN,HSV______
+    ),
+
+   [MIRMEDIA] = LEDLAYOUT(
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV_MGNTA,HSV_MGNTA,HSV_MGNTA,HSV_MGNTA,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                                           HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV_MGNTA,          HSV______,                       HSV______,          HSV_MGNTA,HSV______,HSV______,HSV______,HSV______,
+                                                        HSV______,HSV______,HSV______,   HSV______,HSV_MGNTA,HSV_MGNTA
+    ),
+
+   [MIRMOUSE] = LEDLAYOUT(
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV_YLLOW,HSV_YLLOW,HSV_YLLOW,HSV_YLLOW,HSV_YLLOW,HSV______,
+      HSV______,HSV_YLLOW,HSV_YLLOW,HSV_YLLOW,HSV_YLLOW,HSV______,HSV______,                       HSV______,HSV_YLLOW,HSV_YLLOW,HSV_YLLOW,HSV_YLLOW,HSV_YLLOW,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                                           HSV_YLLOW,HSV_YLLOW,HSV_YLLOW,HSV_YLLOW,HSV_YLLOW,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,          HSV______,                       HSV______,          HSV_YLLOW,HSV______,HSV______,HSV______,HSV______,
+                                                        HSV______,HSV_YLLOW,HSV______,   HSV______,HSV_YLLOW,HSV_YLLOW
+    ),
+
+   [OSMNAV] = LEDLAYOUT(
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV_CYAN ,HSV_CYAN ,HSV_CYAN ,HSV_CYAN ,HSV_CYAN ,HSV______,
+      HSV______,HSV_WHITE,HSV_WHITE,HSV_WHITE,HSV_WHITE,HSV______,HSV______,                       HSV______,HSV_CYAN ,HSV_CYAN ,HSV_CYAN ,HSV_CYAN ,HSV_CYAN ,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                                           HSV_CYAN ,HSV_CYAN ,HSV_CYAN ,HSV_CYAN ,HSV_CYAN ,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV______,          HSV______,                       HSV_WHITE,          HSV_WHITE,HSV______,HSV______,HSV______,HSV______,
+                                                        HSV______,HSV______,HSV______,   HSV______,HSV______,HSV______
+    ),
+
+   [OSMNUM] = LEDLAYOUT(
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV_BLUE ,HSV_BLUE ,HSV_BLUE ,HSV_BLUE ,HSV_BLUE ,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV_BLUE ,HSV_BLUE ,HSV_BLUE ,HSV_BLUE ,HSV_BLUE ,HSV______,                       HSV______,HSV______,HSV_WHITE,HSV_WHITE,HSV_WHITE,HSV_WHITE,HSV______,
+      HSV______,HSV_BLUE ,HSV_BLUE ,HSV_BLUE ,HSV_BLUE ,HSV_BLUE ,                                           HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV_WHITE,          HSV_WHITE,                       HSV______,          HSV______,HSV______,HSV______,HSV______,HSV______,
+                                                        HSV_BLUE ,HSV_BLUE ,HSV______,   HSV______,HSV______,HSV______
+    ),
+
+   [OSMFN] = LEDLAYOUT(
+      HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV_RED  ,HSV_RED  ,HSV_RED  ,HSV_RED  ,HSV_RED  ,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV_RED  ,HSV_RED  ,HSV_RED  ,HSV_RED  ,HSV_RED  ,HSV______,                       HSV______,HSV______,HSV_WHITE,HSV_WHITE,HSV_WHITE,HSV_WHITE,HSV______,
+      HSV______,HSV______,HSV_RED  ,HSV_RED  ,HSV_RED  ,HSV_RED  ,                                           HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV______,HSV______,HSV______,HSV_RED  ,          HSV______,                       HSV______,          HSV______,HSV______,HSV______,HSV______,HSV______,
+                                                        HSV______,HSV______,HSV______,   HSV______,HSV______,HSV______
+    ),
 
 };
 
@@ -566,7 +715,7 @@ void set_layer_color(int layer) {
 }
 
 void rgb_matrix_indicators_user(void) {
-  if (g_suspend_state || keyboard_config.disable_layer_led) { return; }
+  if (keyboard_config.disable_layer_led) { return; }
   uint8_t highestLayer = biton32(layer_state);
   switch (highestLayer) {
     case MIRMAIN:
