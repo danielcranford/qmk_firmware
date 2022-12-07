@@ -50,6 +50,24 @@
 #define SE_SECT_MAC ALGR(KC_6)
 #define MOON_LED_LEVEL LED_LEVEL
 
+#define ALT_APP MT(MOD_LALT, KC_APPLICATION)
+#define CTL_ESC MT(MOD_LCTL, KC_ESCAPE)
+
+#define GUI_A MT(MOD_LGUI, KC_A)
+#define ALT_S MT(MOD_LALT, KC_S)
+#define CTL_D MT(MOD_LCTL, KC_D)
+#define SFT_F MT(MOD_LSFT, KC_F)
+#define SFT_J MT(MOD_LSFT, KC_J)
+#define CTL_K MT(MOD_LCTL, KC_K)
+#define ALT_L MT(MOD_LALT, KC_L)
+#define GUI_SCN MT(MOD_LGUI, KC_SCOLON)
+#define MED_ESC LT(MIRMEDIA,KC_ESCAPE)
+#define FUN_DEL LT(MIRFN,KC_DELETE)
+#define NAV_BSP LT(MIRNAV,KC_BSPACE)
+#define MOU_TAB LT(MIRMOUSE,KC_TAB)
+#define SYM_ENT LT(MIRSYM,KC_ENTER)
+#define NUM_SPC LT(MIRNUM,KC_SPACE)
+
 enum custom_keycodes {
   // Moonlander keycodes
   RGB_SLD = ML_SAFE_RANGE,
@@ -100,11 +118,20 @@ enum layers {
   MEDIA,
 };
 
-
+/*enum taps {
+  LR_DEF,
+  LR_MIR,
+  LR_FUN,
+  LR_NUM,
+  LR_SYM,
+  LR_MED,
+  LR_NAV,
+  LR_MOU,
+}*/
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [DEFAULT] = LAYOUT_moonlander(
-    KC_GRAVE,       KC_1,              KC_2,           KC_3,           KC_4,           KC_5,           TG(MIRMAIN),                 TG(THE1),    KC_6,                    KC_7,           KC_8,           KC_9,           KC_0,           KC_MINUS,       
+    KC_EQUAL,       KC_1,              KC_2,           KC_3,           KC_4,           KC_5,           TG(MIRMAIN),                 TG(THE1),    KC_6,                    KC_7,           KC_8,           KC_9,           KC_0,           KC_MINUS,       
     KC_EQUAL,       KC_Q,              KC_W,           KC_E,           KC_R,           KC_T,           TG(CMBMAIN),                 TG(OSMMAIN), KC_Y,                    KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLASH,      
     KC_DELETE,      KC_A,              KC_S,           KC_D,           KC_F,           KC_G,           TG(MEDIA),                   TG(JMP),     KC_H,                    KC_J,           KC_K,           KC_L,           KC_SCOLON,      KC_QUOTE,       
     KC_LSHIFT,      KC_Z,              KC_X,           KC_C,           KC_V,           KC_B,                                                     KC_N,                    KC_M,           KC_COMMA,       KC_DOT,         KC_SLASH,       KC_RSHIFT,      
@@ -128,12 +155,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_BSPACE,      KC_TAB,         KC_TRANSPARENT,                 KC_TRANSPARENT, KC_ENTER,       KC_SPACE
   ),
   [MIRMAIN] = LAYOUT_moonlander(
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,               KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, MT(MOD_LGUI, KC_Q), MT(MOD_LALT, KC_W), MT(MOD_LCTL, KC_E), MT(MOD_LSFT, KC_R), MT(MOD_LSFT, KC_T),           KC_TRANSPARENT, KC_TRANSPARENT, MT(MOD_LSFT, KC_Y),           MT(MOD_LSFT, KC_U), MT(MOD_LCTL, KC_I),     MT(MOD_LALT, KC_O), MT(MOD_LGUI, KC_P),      KC_TRANSPARENT, 
-    KC_TRANSPARENT, MT(MOD_LGUI, KC_A), MT(MOD_LALT, KC_S), MT(MOD_LCTL, KC_D), MT(MOD_LSFT, KC_F), MT(MOD_LSFT, KC_G),           KC_TRANSPARENT, KC_TRANSPARENT, MT(MOD_LSFT, KC_H),           MT(MOD_LSFT, KC_J), MT(MOD_LCTL, KC_K),     MT(MOD_LALT, KC_L), MT(MOD_LGUI, KC_SCOLON), KC_TRANSPARENT, 
-    KC_TRANSPARENT, MT(MOD_LGUI, KC_Z), MT(MOD_LALT, KC_X), MT(MOD_LCTL, KC_C), MT(MOD_LSFT, KC_V), MT(MOD_LSFT, KC_B),                                           MT(MOD_LSFT, KC_N),           MT(MOD_LSFT, KC_M), MT(MOD_LCTL, KC_COMMA), MT(MOD_LALT, KC_DOT),MT(MOD_LGUI, KC_SLASH), KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, LT(MIRMEDIA,KC_ESCAPE),KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, LT(MIRFN,KC_DELETE),KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    LT(MIRNAV,KC_BSPACE),LT(MIRMOUSE,KC_TAB),  KC_TRANSPARENT,                 KC_TRANSPARENT, LT(MIRSYM,KC_ENTER), LT(MIRNUM,KC_SPACE)
+    KC_EQUAL,             KC_1,                KC_2,               KC_3,               KC_4,                   KC_5,           TG(MIRMAIN),    TG(THE1),       KC_6,           KC_7,                KC_8,               KC_9,               KC_0,                    KC_MINUS,
+    KC_TRANSPARENT,       KC_Q,                KC_W,               KC_E,               KC_R,                   KC_T,           KC_TRANSPARENT, KC_TRANSPARENT, KC_Y,           KC_U,                KC_I,               KC_O,               KC_P,                    KC_BSLASH, 
+    KC_TRANSPARENT,       GUI_A,               ALT_S,              CTL_D,              SFT_F,                  KC_G,           KC_TRANSPARENT, KC_TRANSPARENT, KC_H,           SFT_J,               CTL_K,              ALT_L,              GUI_SCN,                 KC_QUOT, 
+    KC_TRANSPARENT,       KC_Z,                KC_X,               KC_C,               KC_V,                   KC_B,                                           KC_N,           KC_M,                KC_COMMA,           KC_DOT,             KC_SLASH,                KC_TRANSPARENT, 
+    KC_TRANSPARENT,       KC_TRANSPARENT,      KC_TRANSPARENT,     KC_TRANSPARENT,     MED_ESC,                KC_TRANSPARENT,                                 KC_TRANSPARENT, FUN_DEL,             KC_TRANSPARENT,     KC_TRANSPARENT,     KC_TRANSPARENT,          KC_TRANSPARENT, 
+    NAV_BSP,              MOU_TAB,             KC_TRANSPARENT,     KC_TRANSPARENT,     SYM_ENT,                NUM_SPC
   ),
   [THE1] = LAYOUT_moonlander(
 	KC_TRANSPARENT,	KC_TRANSPARENT,	KC_TRANSPARENT,	KC_TRANSPARENT,	KC_TRANSPARENT,	KC_TRANSPARENT,	KC_TRANSPARENT,	KC_TRANSPARENT,	KC_TRANSPARENT,	KC_TRANSPARENT,	KC_TRANSPARENT,	KC_TRANSPARENT,	KC_TRANSPARENT,	KC_TRANSPARENT,	
@@ -185,49 +212,49 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [MIRNAV] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_INSERT,      KC_HOME,        KC_UP,          KC_END,         KC_PGUP,        KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, DF(DEFAULT),    DF(MIRMAIN),    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_INSERT,      KC_HOME,        KC_UP,          KC_END,         KC_PGUP,        KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_LGUI,        KC_LALT,        KC_LCTRL,       KC_LSHIFT,      KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_CAPSLOCK,    KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_PGDOWN,      KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 LCTL(KC_Y),     KC_PC_PASTE,    KC_PC_COPY,     KC_PC_CUT,      KC_PC_UNDO,     KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, DF(MIRNUM),     DF(MIRNAV),     KC_TRANSPARENT,                                 LCTL(KC_Y),     KC_PC_PASTE,    KC_PC_COPY,     KC_PC_CUT,      KC_PC_UNDO,     KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_DELETE,      KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                 KC_TRANSPARENT, KC_ENTER,       KC_BSPACE
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                 KC_TRANSPARENT, KC_ENTER,       KC_SPACE
   ),
   [MIRNUM] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_LBRACKET,    KC_7,           KC_8,           KC_9,           KC_RBRACKET,    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_LBRACKET,    KC_7,           KC_8,           KC_9,           KC_RBRACKET,    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, DF(MIRMAIN),    DF(DEFAULT),    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_QUOTE,       KC_4,           KC_5,           KC_6,           KC_EQUAL,       KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_LSHIFT,      KC_LCTRL,       KC_LALT,        KC_LGUI,        KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_GRAVE,       KC_1,           KC_2,           KC_3,           KC_BSLASH,                                      KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_GRAVE,       KC_1,           KC_2,           KC_3,           KC_BSLASH,                                      KC_TRANSPARENT, DF(MIRNUM),     DF(MIRNAV),     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_DOT,         KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_0,           KC_MINUS,       KC_TRANSPARENT,                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [MIRFN] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_F12,         KC_F7,          KC_F8,          KC_F9,          KC_PSCREEN,     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_F12,         KC_F7,          KC_F8,          KC_F9,          KC_PSCREEN,     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, DF(MIRMAIN),    DF(DEFAULT),    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_F11,         KC_F4,          KC_F5,          KC_F6,          KC_SCROLLLOCK,  KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_LSHIFT,      KC_LCTRL,       KC_LALT,        KC_LGUI,        KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_F10,         KC_F1,          KC_F2,          KC_F3,          KC_PAUSE,                                       KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_F10,         KC_F1,          KC_F2,          KC_F3,          KC_PAUSE,                                       KC_TRANSPARENT, DF(MIRFN),      DF(MIRMEDIA),   KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_APPLICATION, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_SPACE,       KC_TAB,         KC_TRANSPARENT,                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
+    KC_BSPACE,      KC_TAB,         KC_TRANSPARENT,                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [MIRSYM] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_LCBR,        KC_AMPR,        KC_ASTR,        KC_LPRN,        KC_RCBR,        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_LCBR,        KC_AMPR,        KC_ASTR,        KC_LPRN,        KC_RCBR,        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, DF(MIRMAIN),    DF(DEFAULT),    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_DQUO,        KC_DLR,         KC_PERC,        KC_CIRC,        KC_PLUS,        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_LSHIFT,      KC_LCTRL,       KC_LALT,        KC_LGUI,        KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TILD,        KC_EXLM,        KC_AT,          KC_HASH,        KC_PIPE,                                        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TILD,        KC_EXLM,        KC_AT,          KC_HASH,        KC_PIPE,                                        KC_TRANSPARENT, DF(MIRSYM),     DF(MIRMOUSE),   KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_LPRN,        KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_RPRN,        KC_UNDS,        KC_TRANSPARENT,                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [MIRMEDIA] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, DF(DEFAULT),    DF(MIRMAIN),    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_LGUI,        KC_LALT,        KC_LCTRL,       KC_LSHIFT,      KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_MEDIA_PREV_TRACK,KC_AUDIO_VOL_DOWN,KC_AUDIO_VOL_UP,KC_MEDIA_NEXT_TRACK,KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, DF(MIRFN),      DF(MIRMEDIA),     KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_AUDIO_MUTE,  KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                 KC_TRANSPARENT, KC_MEDIA_STOP,  KC_MEDIA_PLAY_PAUSE
   ),
   [MIRMOUSE] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_MS_WH_LEFT,  KC_MS_UP,       KC_MS_WH_RIGHT, KC_MS_WH_UP,    KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, DF(DEFAULT),    DF(MIRMAIN),    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_MS_WH_LEFT,  KC_MS_UP,       KC_MS_WH_RIGHT, KC_MS_WH_UP,    KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_LGUI,        KC_LALT,        KC_LCTRL,       KC_LSHIFT,      KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_MS_WH_DOWN,  KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 LCTL(KC_Y),     KC_PC_PASTE,    KC_PC_COPY,     KC_PC_CUT,      KC_PC_UNDO,     KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, DF(MIRMOUSE),   DF(MIRMOUSE),   KC_TRANSPARENT,                                 LCTL(KC_Y),     KC_PC_PASTE,    KC_PC_COPY,     KC_PC_CUT,      KC_PC_UNDO,     KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_MS_BTN2,     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                 KC_TRANSPARENT, KC_MS_BTN1,     KC_MS_BTN3
   ),
@@ -280,6 +307,9 @@ void keyboard_post_init_user(void) {
 
   // Disable combos by default
   combo_disable();
+
+  // Turn on MIRMAIN by default
+  layer_on(MIRMAIN);
 }
 
 /* RGB LED map appears to number keys thusly
@@ -331,280 +361,6 @@ a04,a09,a14,a19,a24,    a35,         a71,    a60,a55,a50,a45,a40,\
 {a70},{a71},}
 
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
-    /*
-    [MIRMAIN] = { 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, HSV_PINKMAN, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      HSV_CYAN, HSV_YELLOW, {0,0,0}, 
-      {0,0,0}, 
-      
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, HSV_DANGER, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      HSV_MAGIC_INK, HSV_EMERALD, {0,0,0}, 
-      {0,0,0} },
-      
-    [JMP] = { 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, HSV_WHITE, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, 
-      
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, HSV_WHITE, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0} },
-
-    [JMPLEFT] = { 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, 
-      
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, HSV_DANGER, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      HSV_MAGIC_INK, HSV_EMERALD, {0,0,0}, 
-      {0,0,0} },
-
-    [JMPRIGHT] = { 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, HSV_PINKMAN, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      HSV_CYAN, HSV_YELLOW, {0,0,0}, 
-      {0,0,0}, 
-      
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0} },
-
-    [MIRNAV] = { 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_CYAN, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_CYAN, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_CYAN, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_CYAN, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      HSV_CYAN, {0,0,0}, {0,0,0}, 
-      {0,0,0}, 
-      
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, HSV_CYAN, HSV_CYAN, HSV_CYAN, {0,0,0}, 
-      {0,0,0}, HSV_CYAN, HSV_CYAN, HSV_CYAN, {0,0,0}, 
-      {0,0,0}, HSV_CYAN, HSV_CYAN, HSV_CYAN, {0,0,0}, 
-      {0,0,0}, HSV_CYAN, HSV_CYAN, HSV_CYAN, HSV_CYAN, 
-      {0,0,0}, HSV_CYAN, HSV_CYAN, HSV_CYAN, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      HSV_CYAN, HSV_CYAN, {0,0,0}, 
-      {0,0,0} },
-
-    [MIRNUM] = { 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, {0,0,0}, 
-      {0,0,0}, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, {0,0,0}, 
-      {0,0,0}, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, {0,0,0}, 
-      {0,0,0}, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, 
-      {0,0,0}, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      HSV_MAGIC_INK, HSV_MAGIC_INK, {0,0,0}, 
-      {0,0,0}, 
-      
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_MAGIC_INK, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_MAGIC_INK, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_MAGIC_INK, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_MAGIC_INK, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      HSV_MAGIC_INK, {0,0,0}, {0,0,0}, 
-      {0,0,0} },
-
-    [MIRFN] = { 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, HSV_DANGER, HSV_DANGER, HSV_DANGER, {0,0,0}, 
-      {0,0,0}, HSV_DANGER, HSV_DANGER, HSV_DANGER, {0,0,0}, 
-      {0,0,0}, HSV_DANGER, HSV_DANGER, HSV_DANGER, {0,0,0}, 
-      {0,0,0}, HSV_DANGER, HSV_DANGER, HSV_DANGER, HSV_DANGER, 
-      {0,0,0}, HSV_DANGER, HSV_DANGER, HSV_DANGER, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      HSV_DANGER, HSV_DANGER, {0,0,0}, 
-      {0,0,0}, 
-      
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_DANGER, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_DANGER, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_DANGER, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_DANGER, {0,0,0}, HSV_DANGER, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0} },
-
-    [MIRSYM] = { 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, HSV_EMERALD, HSV_EMERALD, HSV_EMERALD, {0,0,0}, 
-      {0,0,0}, HSV_EMERALD, HSV_EMERALD, HSV_EMERALD, {0,0,0}, 
-      {0,0,0}, HSV_EMERALD, HSV_EMERALD, HSV_EMERALD, {0,0,0}, 
-      {0,0,0}, HSV_EMERALD, HSV_EMERALD, HSV_EMERALD, HSV_EMERALD, 
-      {0,0,0}, HSV_EMERALD, HSV_EMERALD, HSV_EMERALD, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      HSV_EMERALD, HSV_EMERALD, {0,0,0}, 
-      {0,0,0}, 
-      
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_EMERALD, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_EMERALD, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_EMERALD, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_EMERALD, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, HSV_EMERALD, {0,0,0}, 
-      {0,0,0} },
-
-    [MIRMEDIA] = { 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_PINKMAN, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_PINKMAN, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_PINKMAN, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_PINKMAN, {0,0,0}, HSV_PINKMAN, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, 
-      
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_PINKMAN, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_PINKMAN, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_PINKMAN, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_PINKMAN, {0,0,0}, HSV_PINKMAN, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      HSV_PINKMAN, HSV_PINKMAN, {0,0,0}, 
-      {0,0,0} },
-
-    [MIRMOUSE] = { 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_YELLOW, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_YELLOW, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_YELLOW, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_YELLOW, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, 
-      
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, HSV_YELLOW, HSV_YELLOW, HSV_YELLOW, {0,0,0}, 
-      {0,0,0}, HSV_YELLOW, HSV_YELLOW, HSV_YELLOW, {0,0,0}, 
-      {0,0,0}, HSV_YELLOW, HSV_YELLOW, HSV_YELLOW, {0,0,0}, 
-      {0,0,0}, HSV_YELLOW, HSV_YELLOW, HSV_YELLOW, HSV_YELLOW, 
-      {0,0,0}, {0,0,0}, {0,0,0}, HSV_YELLOW, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      HSV_YELLOW, HSV_YELLOW, {0,0,0}, 
-      {0,0,0} },
-
-    [OSMNAV] = { 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, 
-      
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, HSV_CYAN, HSV_CYAN, HSV_CYAN, {0,0,0}, 
-      {0,0,0}, HSV_CYAN, HSV_CYAN, HSV_CYAN, {0,0,0},
-      {0,0,0}, HSV_CYAN, HSV_CYAN, HSV_CYAN, {0,0,0}, 
-      {0,0,0}, HSV_CYAN, HSV_CYAN, HSV_CYAN, HSV_WHITE, 
-      {0,0,0}, HSV_CYAN, HSV_CYAN, HSV_CYAN, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      HSV_WHITE },
-
-    [OSMNUM] = { 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, {0,0,0}, 
-      {0,0,0}, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, {0,0,0}, 
-      {0,0,0}, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, {0,0,0}, 
-      {0,0,0}, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_WHITE, 
-      {0,0,0}, HSV_MAGIC_INK, HSV_MAGIC_INK, HSV_MAGIC_INK, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      HSV_MAGIC_INK, HSV_MAGIC_INK, {0,0,0}, 
-      HSV_WHITE, 
-      
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0} },
-
-    [OSMFN] = { 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, HSV_DANGER, HSV_DANGER, {0,0,0}, {0,0,0}, 
-      {0,0,0}, HSV_DANGER, HSV_DANGER, HSV_DANGER, {0,0,0}, 
-      {0,0,0}, HSV_DANGER, HSV_DANGER, HSV_DANGER, {0,0,0}, 
-      {0,0,0}, HSV_DANGER, HSV_DANGER, HSV_DANGER, {0,0,0}, 
-      {0,0,0}, HSV_DANGER, HSV_DANGER, HSV_DANGER, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, 
-      
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, HSV_WHITE, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0}, {0,0,0}, {0,0,0}, 
-      {0,0,0} },
-      */
     [MIRMAIN] = LEDLAYOUT(
       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
@@ -680,7 +436,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
    [MIRMEDIA] = LEDLAYOUT(
       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
-      HSV______,HSV______,HSV_MGNTA,HSV_MGNTA,HSV_MGNTA,HSV_MGNTA,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
+      HSV______,HSV_MGNTA,HSV_MGNTA,HSV_MGNTA,HSV_MGNTA,HSV______,HSV______,                       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
       HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,                                           HSV______,HSV______,HSV______,HSV______,HSV______,HSV______,
       HSV______,HSV______,HSV______,HSV______,HSV_MGNTA,          HSV______,                       HSV______,          HSV_MGNTA,HSV______,HSV______,HSV______,HSV______,
                                                         HSV______,HSV______,HSV______,   HSV______,HSV_MGNTA,HSV_MGNTA
@@ -743,7 +499,9 @@ void set_layer_color(int layer) {
 
 void rgb_matrix_indicators_user(void) {
   if (keyboard_config.disable_layer_led) { return; }
-  uint8_t highestLayer = biton32(layer_state);
+  // Include default layer in determination of which layer we are on
+  layer_state_t layers = layer_state | default_layer_state;
+  uint8_t highestLayer = biton32(layers);
   switch (highestLayer) {
     case MIRMAIN:
     case JMP:
@@ -927,24 +685,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case RGB_SLD:
       if (record->event.pressed) {
-        rgblight_mode(1);
+        rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
       }
       return false;
     case HSV_0_255_255:
       if (record->event.pressed) {
-        rgblight_mode(1);
+        rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
         rgblight_sethsv(0,255,255);
       }
       return false;
     case HSV_86_255_128:
       if (record->event.pressed) {
-        rgblight_mode(1);
+        rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
         rgblight_sethsv(86,255,128);
       }
       return false;
     case HSV_172_255_255:
       if (record->event.pressed) {
-        rgblight_mode(1);
+        rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
         rgblight_sethsv(172,255,255);
       }
       return false;
@@ -1043,9 +801,9 @@ combo_t key_combos[COMBO_LENGTH] = {
   [ESC_A]     = COMBO(KEYS(KC_ESCAPE, KC_A), KC_LGUI),
 
   // Combos for thumb keys. 
-  [ESC_V] = COMBO_ACTION(KEYS(KC_V, KC_ESCAPE)),
-  [BSPACE_V]  = COMBO_ACTION(KEYS(KC_V, KC_BSPACE)),
-  [TAB_V] = COMBO_ACTION(KEYS(KC_V, KC_TAB)),
+  [ESC_V] = COMBO(KEYS(KC_V, KC_ESCAPE), MO(MIRMEDIA)),
+  [BSPACE_V] = COMBO(KEYS(KC_V, KC_BSPACE), MO(MIRNAV)),
+  [TAB_V] = COMBO(KEYS(KC_V, KC_TAB), MO(MIRMOUSE)),
 
   // Home row only combos for mods
   [DEL_J]   = COMBO(KEYS(KC_DEL, KC_J), KC_LSHIFT),
@@ -1054,9 +812,9 @@ combo_t key_combos[COMBO_LENGTH] = {
   [DEL_SCOLON]  = COMBO(KEYS(KC_DEL, KC_SCOLON), KC_LGUI),
 
   // Combos for thumb keys. 
-  [DEL_M]    = COMBO_ACTION(KEYS(KC_M, KC_DEL)),
-  [SPC_M]   = COMBO_ACTION(KEYS(KC_M, KC_SPACE)),
-  [ENTR_M] = COMBO_ACTION(KEYS(KC_M, KC_ENTER)),
+  [DEL_M]    = COMBO(KEYS(KC_M, KC_DEL), MO(MIRFN)),
+  [SPC_M]   = COMBO(KEYS(KC_M, KC_SPACE), MO(MIRNUM)),
+  [ENTR_M] = COMBO(KEYS(KC_M, KC_ENTER), MO(MIRSYM)),
 
 
   // Shift combos
@@ -1113,39 +871,6 @@ combo_t key_combos[COMBO_LENGTH] = {
 
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
-static void layer_pressed(uint8_t layer, bool pressed) {
-  if(pressed) {
-    layer_on(layer);
-  } else {
-    layer_off(layer);
-  }
-}
-
-void process_combo_event(uint16_t combo_index, bool pressed) {
-  switch (combo_index)
-  {
-  case ESC_V:
-    layer_pressed(MIRMEDIA, pressed);
-    break;
-  case BSPACE_V:
-    layer_pressed(MIRNAV, pressed);
-    break;
-  case TAB_V:
-    layer_pressed(MIRMOUSE, pressed);
-    break;
-
-  case DEL_M:
-    layer_pressed(MIRFN, pressed);
-    break;
-  case SPC_M:
-    layer_pressed(MIRNUM, pressed);
-    break;
-  case ENTR_M:
-    layer_pressed(MIRSYM, pressed);
-    break;
-    
-  }
-}
 
 // Runs whenever there is a layer state change.
 layer_state_t layer_state_set_user(layer_state_t state) {
