@@ -92,6 +92,10 @@ enum custom_keycodes {
   OSL_SYM,
   OSL_NUM,
   OSL_FUN,
+
+  LL_CUR,
+  LL_OPP,
+  LL_CLR,
 };
 
 enum layers {
@@ -132,8 +136,8 @@ enum layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [DEFAULT] = LAYOUT_moonlander(
     KC_EQUAL,       KC_1,              KC_2,           KC_3,           KC_4,           KC_5,           TG(MIRMAIN),                 TG(THE1),    KC_6,                    KC_7,           KC_8,           KC_9,           KC_0,           KC_MINUS,       
-    KC_EQUAL,       KC_Q,              KC_W,           KC_E,           KC_R,           KC_T,           TG(CMBMAIN),                 TG(OSMMAIN), KC_Y,                    KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLASH,      
-    KC_DELETE,      KC_A,              KC_S,           KC_D,           KC_F,           KC_G,           TG(MEDIA),                   TG(JMP),     KC_H,                    KC_J,           KC_K,           KC_L,           KC_SCOLON,      KC_QUOTE,       
+    SH_TG,          KC_Q,              KC_W,           KC_E,           KC_R,           KC_T,           TG(CMBMAIN),                 TG(OSMMAIN), KC_Y,                    KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLASH,      
+    SH_OS,          KC_A,              KC_S,           KC_D,           KC_F,           KC_G,           TG(MEDIA),                   TG(JMP),     KC_H,                    KC_J,           KC_K,           KC_L,           KC_SCOLON,      KC_QUOTE,       
     KC_LSHIFT,      KC_Z,              KC_X,           KC_C,           KC_V,           KC_B,                                                     KC_N,                    KC_M,           KC_COMMA,       KC_DOT,         KC_SLASH,       KC_RSHIFT,      
     KC_LCTRL,       KC_LGUI,           KC_LALT,        KC_LEFT,        KC_RIGHT,       MT(MOD_LALT, KC_APPLICATION),                             MT(MOD_LCTL, KC_ESCAPE), KC_UP,          KC_DOWN,        LGUI(KC_TAB),   TT(MEDIA),      TT(SYMBOLS),         
     KC_BSPACE,      LT(MIRNAV,KC_TAB), KC_LGUI,        KC_LALT,        KC_ENTER,       KC_SPACE
@@ -212,49 +216,49 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [MIRNAV] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, DF(DEFAULT),    DF(MIRMAIN),    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_INSERT,      KC_HOME,        KC_UP,          KC_END,         KC_PGUP,        KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, LL_CLR,         KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_INSERT,      KC_HOME,        KC_UP,          KC_END,         KC_PGUP,        KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_LGUI,        KC_LALT,        KC_LCTRL,       KC_LSHIFT,      KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_CAPSLOCK,    KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_PGDOWN,      KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, DF(MIRNUM),     DF(MIRNAV),     KC_TRANSPARENT,                                 LCTL(KC_Y),     KC_PC_PASTE,    KC_PC_COPY,     KC_PC_CUT,      KC_PC_UNDO,     KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, LL_OPP,         LL_CUR,     KC_TRANSPARENT,                                 LCTL(KC_Y),     KC_PC_PASTE,    KC_PC_COPY,     KC_PC_CUT,      KC_PC_UNDO,     KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_DELETE,      KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                 KC_TRANSPARENT, KC_ENTER,       KC_SPACE
   ),
   [MIRNUM] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_LBRACKET,    KC_7,           KC_8,           KC_9,           KC_RBRACKET,    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, DF(MIRMAIN),    DF(DEFAULT),    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_LBRACKET,    KC_7,           KC_8,           KC_9,           KC_RBRACKET,    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, LL_CLR,         KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_QUOTE,       KC_4,           KC_5,           KC_6,           KC_EQUAL,       KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_LSHIFT,      KC_LCTRL,       KC_LALT,        KC_LGUI,        KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_GRAVE,       KC_1,           KC_2,           KC_3,           KC_BSLASH,                                      KC_TRANSPARENT, DF(MIRNUM),     DF(MIRNAV),     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_GRAVE,       KC_1,           KC_2,           KC_3,           KC_BSLASH,                                      KC_TRANSPARENT, LL_CUR,         LL_OPP,     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_DOT,         KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_0,           KC_MINUS,       KC_TRANSPARENT,                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [MIRFN] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_F12,         KC_F7,          KC_F8,          KC_F9,          KC_PSCREEN,     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, DF(MIRMAIN),    DF(DEFAULT),    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_F12,         KC_F7,          KC_F8,          KC_F9,          KC_PSCREEN,     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, LL_CLR,         KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_F11,         KC_F4,          KC_F5,          KC_F6,          KC_SCROLLLOCK,  KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_LSHIFT,      KC_LCTRL,       KC_LALT,        KC_LGUI,        KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_F10,         KC_F1,          KC_F2,          KC_F3,          KC_PAUSE,                                       KC_TRANSPARENT, DF(MIRFN),      DF(MIRMEDIA),   KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_F10,         KC_F1,          KC_F2,          KC_F3,          KC_PAUSE,                                       KC_TRANSPARENT, LL_CUR,         LL_OPP,         KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_APPLICATION, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_BSPACE,      KC_TAB,         KC_TRANSPARENT,                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [MIRSYM] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_LCBR,        KC_AMPR,        KC_ASTR,        KC_LPRN,        KC_RCBR,        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, DF(MIRMAIN),    DF(DEFAULT),    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_LCBR,        KC_AMPR,        KC_ASTR,        KC_LPRN,        KC_RCBR,        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, LL_CLR,         KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_DQUO,        KC_DLR,         KC_PERC,        KC_CIRC,        KC_PLUS,        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_LSHIFT,      KC_LCTRL,       KC_LALT,        KC_LGUI,        KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TILD,        KC_EXLM,        KC_AT,          KC_HASH,        KC_PIPE,                                        KC_TRANSPARENT, DF(MIRSYM),     DF(MIRMOUSE),   KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TILD,        KC_EXLM,        KC_AT,          KC_HASH,        KC_PIPE,                                        KC_TRANSPARENT, LL_CUR,         LL_OPP,         KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_LPRN,        KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_RPRN,        KC_UNDS,        KC_TRANSPARENT,                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [MIRMEDIA] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, DF(DEFAULT),    DF(MIRMAIN),    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, LL_CLR,         KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_LGUI,        KC_LALT,        KC_LCTRL,       KC_LSHIFT,      KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_MEDIA_PREV_TRACK,KC_AUDIO_VOL_DOWN,KC_AUDIO_VOL_UP,KC_MEDIA_NEXT_TRACK,KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, DF(MIRFN),      DF(MIRMEDIA),     KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, LL_OPP,         LL_CUR,         KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_AUDIO_MUTE,  KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                 KC_TRANSPARENT, KC_MEDIA_STOP,  KC_MEDIA_PLAY_PAUSE
   ),
   [MIRMOUSE] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, DF(DEFAULT),    DF(MIRMAIN),    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_MS_WH_LEFT,  KC_MS_UP,       KC_MS_WH_RIGHT, KC_MS_WH_UP,    KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, LL_CLR,         KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_MS_WH_LEFT,  KC_MS_UP,       KC_MS_WH_RIGHT, KC_MS_WH_UP,    KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_LGUI,        KC_LALT,        KC_LCTRL,       KC_LSHIFT,      KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_MS_WH_DOWN,  KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, DF(MIRMOUSE),   DF(MIRMOUSE),   KC_TRANSPARENT,                                 LCTL(KC_Y),     KC_PC_PASTE,    KC_PC_COPY,     KC_PC_CUT,      KC_PC_UNDO,     KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, LL_OPP,         LL_CUR,         KC_TRANSPARENT,                                 LCTL(KC_Y),     KC_PC_PASTE,    KC_PC_COPY,     KC_PC_CUT,      KC_PC_UNDO,     KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_MS_BTN2,     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                 KC_TRANSPARENT, KC_MS_BTN1,     KC_MS_BTN3
   ),
@@ -661,6 +665,21 @@ void update_oneshot_layer(
     }
 }
 
+static bool layerLocked = false;
+static uint8_t lockedLayer = 0;
+
+static uint8_t oppositeOf(uint8_t layer) {
+  switch (layer)
+  {
+  case MIRMEDIA: return MIRFN;
+  case MIRNAV: return MIRNUM;
+  case MIRMOUSE: return MIRSYM;
+  case MIRSYM: return MIRMOUSE;
+  case MIRNUM: return MIRNAV;
+  case MIRFN: return MIRMEDIA;
+  default: return layer;
+  }
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   // Check for the callum oakley one-shot keys, and update state if other key pressed
@@ -688,30 +707,59 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         rgblight_mode(1);
       }
       return false;
+
     case HSV_0_255_255:
       if (record->event.pressed) {
-        rgblight_mode(1);
+        rgblight_mode(1 /* RGBLIGHT_MODE_STATIC_LIGHT */);
         rgblight_sethsv(0,255,255);
       }
       return false;
+
     case HSV_86_255_128:
       if (record->event.pressed) {
-        rgblight_mode(1);
+        rgblight_mode(1 /* RGBLIGHT_MODE_STATIC_LIGHT */);
         rgblight_sethsv(86,255,128);
       }
       return false;
+
     case HSV_172_255_255:
       if (record->event.pressed) {
-        rgblight_mode(1);
+        rgblight_mode(1 /* RGBLIGHT_MODE_STATIC_LIGHT */);
         rgblight_sethsv(172,255,255);
       }
       return false;
+
     case OS_LSFT...OSL_FUN:
       // No need to continue processing
+      return false;
+
+    case LL_CLR:
+      if (record->event.pressed) {
+        layerLocked = false;
+        layer_off(lockedLayer);
+        lockedLayer = 0;        
+      }
+      
+      return false;
+
+    case LL_OPP: // fallthrough
+    case LL_CUR:
+      if (record->event.pressed) {
+        // Note: do not want to mess with default_layer here
+        // no getter for layer state, use extern ref to access
+        uint8_t layer = biton32(layer_state); 
+        if(keycode == LL_OPP) {
+          layer = oppositeOf(layer);
+        }
+        // Save locked layer
+        lockedLayer = layer;
+        layerLocked = true;
+      }
       return false;
   }
   return true;
 }
+
 
 enum combos_enum {
   ESC_F,
@@ -781,6 +829,15 @@ enum combos_enum {
   S_DOT,
   S_SLS,
 
+  // Outer pinky Shift combos
+  S_EQL,
+  S_MIN,
+  S_BSL,
+  S_QOT,
+
+  // Try CAPSWRD
+  SS_CW,
+
   COMBO_LENGTH
 };
 
@@ -818,55 +875,60 @@ combo_t key_combos[COMBO_LENGTH] = {
 
 
   // Shift combos
-  [S_1] = COMBO(KEYS(KC_1, MT(MOD_LSFT, KC_J)), LSFT(KC_1)),
-  [S_2] = COMBO(KEYS(KC_2, MT(MOD_LSFT, KC_J)), LSFT(KC_2)),
-  [S_3] = COMBO(KEYS(KC_3, MT(MOD_LSFT, KC_J)), LSFT(KC_3)),
-  [S_4] = COMBO(KEYS(KC_4, MT(MOD_LSFT, KC_J)), LSFT(KC_4)),
-  [S_5] = COMBO(KEYS(KC_5, MT(MOD_LSFT, KC_J)), LSFT(KC_5)),
+  [S_1] = COMBO(KEYS(KC_1, SFT_J), LSFT(KC_1)),
+  [S_2] = COMBO(KEYS(KC_2, SFT_J), LSFT(KC_2)),
+  [S_3] = COMBO(KEYS(KC_3, SFT_J), LSFT(KC_3)),
+  [S_4] = COMBO(KEYS(KC_4, SFT_J), LSFT(KC_4)),
+  [S_5] = COMBO(KEYS(KC_5, SFT_J), LSFT(KC_5)),
 
-  [S_Q] = COMBO(KEYS(KC_Q, MT(MOD_LSFT, KC_J)), LSFT(KC_Q)),
-  [S_W] = COMBO(KEYS(KC_W, MT(MOD_LSFT, KC_J)), LSFT(KC_W)),
-  [S_E] = COMBO(KEYS(KC_E, MT(MOD_LSFT, KC_J)), LSFT(KC_E)),
-  [S_R] = COMBO(KEYS(KC_R, MT(MOD_LSFT, KC_J)), LSFT(KC_R)),
-  [S_T] = COMBO(KEYS(KC_T, MT(MOD_LSFT, KC_J)), LSFT(KC_T)),
+  [S_Q] = COMBO(KEYS(KC_Q, SFT_J), LSFT(KC_Q)),
+  [S_W] = COMBO(KEYS(KC_W, SFT_J), LSFT(KC_W)),
+  [S_E] = COMBO(KEYS(KC_E, SFT_J), LSFT(KC_E)),
+  [S_R] = COMBO(KEYS(KC_R, SFT_J), LSFT(KC_R)),
+  [S_T] = COMBO(KEYS(KC_T, SFT_J), LSFT(KC_T)),
 
-  [S_A] = COMBO(KEYS(MT(MOD_LGUI, KC_A), MT(MOD_LSFT, KC_J)), LSFT(KC_A)),
-  [S_S] = COMBO(KEYS(MT(MOD_LALT, KC_S), MT(MOD_LSFT, KC_J)), LSFT(KC_S)),
-  [S_D] = COMBO(KEYS(MT(MOD_LCTL, KC_D), MT(MOD_LSFT, KC_J)), LSFT(KC_D)),
-  //[S_F] = COMBO(KEYS(MT(MOD_LSFT, KC_F), MT(MOD_LSFT, KC_J)), LSFT(KC_F)),
-  [S_G] = COMBO(KEYS(KC_G, MT(MOD_LSFT, KC_J)), LSFT(KC_G)),
+  [S_A] = COMBO(KEYS(MT(MOD_LGUI, KC_A), SFT_J), LSFT(KC_A)),
+  [S_S] = COMBO(KEYS(MT(MOD_LALT, KC_S), SFT_J), LSFT(KC_S)),
+  [S_D] = COMBO(KEYS(MT(MOD_LCTL, KC_D), SFT_J), LSFT(KC_D)),
+  //[S_F] = COMBO(KEYS(SFT_F, SFT_J), LSFT(KC_F)),
+  [S_G] = COMBO(KEYS(KC_G, SFT_J), LSFT(KC_G)),
 
-  [S_Z] = COMBO(KEYS(KC_Z, MT(MOD_LSFT, KC_J)), LSFT(KC_Z)),
-  [S_X] = COMBO(KEYS(KC_X, MT(MOD_LSFT, KC_J)), LSFT(KC_X)),
-  [S_C] = COMBO(KEYS(KC_C, MT(MOD_LSFT, KC_J)), LSFT(KC_C)),
-  [S_V] = COMBO(KEYS(KC_V, MT(MOD_LSFT, KC_J)), LSFT(KC_V)),
-  [S_B] = COMBO(KEYS(KC_B, MT(MOD_LSFT, KC_J)), LSFT(KC_B)),
+  [S_Z] = COMBO(KEYS(KC_Z, SFT_J), LSFT(KC_Z)),
+  [S_X] = COMBO(KEYS(KC_X, SFT_J), LSFT(KC_X)),
+  [S_C] = COMBO(KEYS(KC_C, SFT_J), LSFT(KC_C)),
+  [S_V] = COMBO(KEYS(KC_V, SFT_J), LSFT(KC_V)),
+  [S_B] = COMBO(KEYS(KC_B, SFT_J), LSFT(KC_B)),
 
-  [S_6] = COMBO(KEYS(KC_6, MT(MOD_LSFT, KC_F)), LSFT(KC_6)),
-  [S_7] = COMBO(KEYS(KC_7, MT(MOD_LSFT, KC_F)), LSFT(KC_7)),
-  [S_8] = COMBO(KEYS(KC_8, MT(MOD_LSFT, KC_F)), LSFT(KC_8)),
-  [S_9] = COMBO(KEYS(KC_9, MT(MOD_LSFT, KC_F)), LSFT(KC_9)),
-  [S_0] = COMBO(KEYS(KC_0, MT(MOD_LSFT, KC_F)), LSFT(KC_0)),
+  [S_6] = COMBO(KEYS(KC_6, SFT_F), LSFT(KC_6)),
+  [S_7] = COMBO(KEYS(KC_7, SFT_F), LSFT(KC_7)),
+  [S_8] = COMBO(KEYS(KC_8, SFT_F), LSFT(KC_8)),
+  [S_9] = COMBO(KEYS(KC_9, SFT_F), LSFT(KC_9)),
+  [S_0] = COMBO(KEYS(KC_0, SFT_F), LSFT(KC_0)),
 
-  [S_Y] = COMBO(KEYS(KC_Y, MT(MOD_LSFT, KC_F)), LSFT(KC_Y)),
-  [S_U] = COMBO(KEYS(KC_U, MT(MOD_LSFT, KC_F)), LSFT(KC_U)),
-  [S_I] = COMBO(KEYS(KC_I, MT(MOD_LSFT, KC_F)), LSFT(KC_I)),
-  [S_O] = COMBO(KEYS(KC_O, MT(MOD_LSFT, KC_F)), LSFT(KC_O)),
-  [S_P] = COMBO(KEYS(KC_P, MT(MOD_LSFT, KC_F)), LSFT(KC_P)),
+  [S_Y] = COMBO(KEYS(KC_Y, SFT_F), LSFT(KC_Y)),
+  [S_U] = COMBO(KEYS(KC_U, SFT_F), LSFT(KC_U)),
+  [S_I] = COMBO(KEYS(KC_I, SFT_F), LSFT(KC_I)),
+  [S_O] = COMBO(KEYS(KC_O, SFT_F), LSFT(KC_O)),
+  [S_P] = COMBO(KEYS(KC_P, SFT_F), LSFT(KC_P)),
 
-  [S_H] = COMBO(KEYS(KC_H, MT(MOD_LSFT, KC_F)), LSFT(KC_H)),
-  //[S_J] = COMBO(KEYS(MT(MOD_LSFT, KC_J), MT(MOD_LSFT, KC_F)), LSFT(KC_J)),
-  [S_K] = COMBO(KEYS(MT(MOD_LCTL, KC_K), MT(MOD_LSFT, KC_F)), LSFT(KC_K)),
-  [S_L] = COMBO(KEYS(MT(MOD_LALT, KC_L), MT(MOD_LSFT, KC_F)), LSFT(KC_L)),
-  [S_SCLN] = COMBO(KEYS(MT(MOD_LGUI, KC_SCLN), MT(MOD_LSFT, KC_F)), LSFT(KC_SCLN)),
+  [S_H] = COMBO(KEYS(KC_H, SFT_F), LSFT(KC_H)),
+  //[S_J] = COMBO(KEYS(SFT_J, SFT_F), LSFT(KC_J)),
+  [S_K] = COMBO(KEYS(MT(MOD_LCTL, KC_K), SFT_F), LSFT(KC_K)),
+  [S_L] = COMBO(KEYS(MT(MOD_LALT, KC_L), SFT_F), LSFT(KC_L)),
+  [S_SCLN] = COMBO(KEYS(MT(MOD_LGUI, KC_SCLN), SFT_F), LSFT(KC_SCLN)),
 
-  [S_N] = COMBO(KEYS(KC_N, MT(MOD_LSFT, KC_F)), LSFT(KC_N)),
-  [S_M] = COMBO(KEYS(KC_M, MT(MOD_LSFT, KC_F)), LSFT(KC_M)),
-  [S_CMA] = COMBO(KEYS(KC_COMMA, MT(MOD_LSFT, KC_F)), LSFT(KC_COMMA)),
-  [S_DOT] = COMBO(KEYS(KC_DOT, MT(MOD_LSFT, KC_F)), LSFT(KC_DOT)),
-  [S_SLS] = COMBO(KEYS(KC_SLASH, MT(MOD_LSFT, KC_F)), LSFT(KC_SLASH)),
+  [S_N] = COMBO(KEYS(KC_N, SFT_F), LSFT(KC_N)),
+  [S_M] = COMBO(KEYS(KC_M, SFT_F), LSFT(KC_M)),
+  [S_CMA] = COMBO(KEYS(KC_COMMA, SFT_F), LSFT(KC_COMMA)),
+  [S_DOT] = COMBO(KEYS(KC_DOT, SFT_F), LSFT(KC_DOT)),
+  [S_SLS] = COMBO(KEYS(KC_SLASH, SFT_F), LSFT(KC_SLASH)),
 
+  [S_EQL] = COMBO(KEYS(KC_EQL, SFT_J), LSFT(KC_EQL)),
+  [S_MIN] = COMBO(KEYS(KC_MINUS, SFT_F), LSFT(KC_MINUS)),
+  [S_BSL] = COMBO(KEYS(KC_BSLS, SFT_F), LSFT(KC_BSLS)),
+  [S_QOT] = COMBO(KEYS(KC_QUOT, SFT_F), LSFT(KC_QUOT)),
 
+  [SS_CW] = COMBO(KEYS(SFT_J, SFT_F), CAPS_WORD),
 };
 
 uint16_t COMBO_LEN = COMBO_LENGTH;
@@ -875,10 +937,15 @@ uint16_t COMBO_LEN = COMBO_LENGTH;
 // Runs whenever there is a layer state change.
 layer_state_t layer_state_set_user(layer_state_t state) {
   // Enable combos only when combo layer is one of the active layers
-  if(layer_state_cmp(state, CMBMAIN)) {
+  if(layer_state_cmp(state, CMBMAIN) || layer_state_cmp(state, MIRMAIN)) {
     combo_enable();
   } else {
     combo_disable();
+  }
+
+  if(layerLocked != 0) {
+    // Update state to ensure lockedLayer stays on
+    state |= ((layer_state_t)1 << lockedLayer);
   }
   return state;
 }
